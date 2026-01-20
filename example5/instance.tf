@@ -19,14 +19,16 @@ data "aws_ami" "cloud_raju" {
 
 
 module "my_ec2_instance" {
-   source  = "horrondor/ec2/aws"
-   version = "1.0.3"
-  
-  ec2_instance_type  = var.ec2_instance_type
-  ec2_instance_name  = var.ec2_instance_name
-  ec2_no_of_instance = var.ec2_no_of_instance
-  ec2_zone_name      = var.ec2_zone_name
-  ec2_key_name       = var.ec2_key_name
+  source  = "horrondor/ec2/aws"
+  version = "1.0.3"
+
+  for_each = var.instances
+
+  ec2_instance_type  = each.value.ec2_instance_type
+  ec2_instance_name  = each.value.ec2_instance_name
+  ec2_no_of_instance = each.value.ec2_no_of_instance
+  ec2_zone_name      = each.value.ec2_zone_name
+  ec2_key_name       = each.value.ec2_key_name
   ec2_ami_id         = data.aws_ami.cloud_raju.id
 
 }

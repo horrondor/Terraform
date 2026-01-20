@@ -4,5 +4,6 @@
 # Terraform state files
 *.tfstate
 *.tfstate.backup
-
+awscliv2.zip
+aws
 # *.tfvars
