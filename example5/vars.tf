@@ -22,19 +22,19 @@ variable "ec2_zone_name" {
 
 
 variable "REGION" {
-  description = "DEV EC2 instances"
+  description = "PROD EC2 instances"
   type        = string
   default     = "us-east-1"
 }
 
 
 variable "instances" {
-  description = "DEV EC2 instances"
+  description = "PROD EC2 instances"
   type = map(object({
-    ec2_instance_type = string
-    ec2_instance_name = string
-    ec2_no_of_instance = number
-    ec2_zone_name     = string
-    ec2_key_name      = string
+    ec2_instance_type      = string
+    ec2_instance_name      = string
+    ec2_zone_name          = string
+    ec2_key_name           = string
+    ec2_security_group_ids = list(string)
   }))
 }
